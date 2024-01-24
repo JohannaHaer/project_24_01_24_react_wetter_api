@@ -20,7 +20,7 @@ const WeatherCard = () => {
         {data 
         ? (
             <section>
-                <div>
+                <div className='buttons'>
                     <button onClick={() => setCity("Hamburg")}>Hamburg</button>
                     <button onClick={() => setCity("Berlin")}>Berlin</button>
                     <button onClick={() => setCity("Köln")}>Köln</button>
