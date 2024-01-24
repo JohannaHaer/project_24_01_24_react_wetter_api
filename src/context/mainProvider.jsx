@@ -12,7 +12,7 @@ const MainProvider = ({children}) => {
 
     useEffect(() => {
         const apiFetch = async() => {
-            const resp = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+            const resp = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=de`)
             // console.log(resp.data);
             setWeather(resp.data)
         }
