@@ -8,20 +8,22 @@ const MainProvider = ({children}) => {
 
     const [weather, setWeather] = useState([])
 
+    const [city, setCity] = useState("Globe")
+
     useEffect(() => {
         const apiFetch = async() => {
-            const resp = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Hamburg&appid=${apiKey}&units=metric`)
+            const resp = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
             // console.log(resp.data);
             setWeather(resp.data)
         }
         apiFetch()
-    }, [])
+    }, [city])
 
     // console.log("nach useEffect", weather);
 
   return (
     <>
-        <mainContext.Provider value={{weather, setWeather}}>
+        <mainContext.Provider value={{weather, setWeather, city, setCity}}>
             {children}
         </mainContext.Provider>
     </>

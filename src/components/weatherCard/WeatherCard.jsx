@@ -1,26 +1,43 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { mainContext } from '../../context/mainProvider';
 
 const WeatherCard = () => {
     const {weather, setWeather} = useContext(mainContext)
     console.log("test", weather);
 
-    const [data, setData] = useState()
+    const [data, setData] = useState(null)
+
+    const {city, setCity} = useContext(mainContext)
+
+    useEffect(() => {
+        if (weather) {
+            setData(weather)
+        }
+    }, [weather])
+
     return (
         <>
-            <div>
-                <button>Hamburg</button>
-                <button>Berlin</button>
-                <button>Köln</button>
-                <button>Australien</button>
-            </div>
-            <div>
-                <h2>{weather.name}</h2>
-                {/* <h2>{weather.weather[0].description}</h2> */}
-                {/* <img src={} alt="" /> */}
-                {/* <h3>Aktuell: {weather?.main.temp} °C</h3> */}
-                {/* <h3>Windgeschwindigkeit: {weather?.wind.speed} km/h</h3> */}
-            </div>
+        {data 
+        ? (
+            <section>
+                <div>
+                    <button onClick={() => setCity("Hamburg")}>Hamburg</button>
+                    <button onClick={() => setCity("Berlin")}>Berlin</button>
+                    <button onClick={() => setCity("Köln")}>Köln</button>
+                    <button onClick={() => setCity("Australien")}>Australien</button>
+                </div>
+                <div>
+                    <h2>{data.name}</h2>
+                    <h3>{data?.weather?.[0].description}</h3>
+                    <h2>{data?.weather?.[0].description}</h2>
+                    <img src={`http://openweathermap.org/img/wn/${data?.weather?.[0].icon}@2x.png`}/>
+                    <h3>Aktuell: {data?.main?.temp} °C</h3>
+                    <h3>Windgeschwindigkeit: {data?.wind?.speed} km/h</h3>
+                </div>
+            </section>
+        )
+        : (<p>Loading...</p>)
+        }
         </>
     )
 }
