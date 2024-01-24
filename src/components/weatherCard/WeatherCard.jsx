@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { mainContext } from '../../context/mainProvider';
 
 const WeatherCard = () => {
     const {weather, setWeather} = useContext(mainContext)
     console.log("test", weather);
+
+    const [data, setData] = useState()
     return (
         <>
             <div>
