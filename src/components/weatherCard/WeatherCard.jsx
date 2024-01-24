@@ -29,7 +29,6 @@ const WeatherCard = () => {
                 <div>
                     <h2>{data.name}</h2>
                     <h3>{data?.weather?.[0].description}</h3>
-                    <h2>{data?.weather?.[0].description}</h2>
                     <img src={`http://openweathermap.org/img/wn/${data?.weather?.[0].icon}@2x.png`}/>
                     <h3>Aktuell: {data?.main?.temp} °C</h3>
                     <h3>Windgeschwindigkeit: {data?.wind?.speed} km/h</h3>
